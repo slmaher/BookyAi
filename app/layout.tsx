@@ -1,37 +1,42 @@
 import type { Metadata } from "next";
-import {Geist, Geist_Mono, IBM_Plex_Serif, Mona_Sans} from "next/font/google";
+import { IBM_Plex_Serif, Mona_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-const ibmplexSerif=IBM_Plex_Serif({
-    variable: "--font-ibm-plex-serif",
-    subsets: ['latin'],
-    weight: ['400', '500', '600', '700'],
-    display: 'swap'
-})
 
-const monoSans =Mona_Sans({
-    variable: '--font-mona-sans',
-    subsets: ['latin'],
-    display: 'swap'
-})
+const ibmplexSerif = IBM_Plex_Serif({
+    variable: "--font-ibm-plex-serif",
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    display: "swap",
+});
+
+const monoSans = Mona_Sans({
+    variable: "--font-mona-sans",
+    subsets: ["latin"],
+    display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "BookyAi",
-  description: "Your Smart Boook, Chat with your book using Ai",
+    title: "BookyAi",
+    description: "Your Smart Book, Chat with your book using AI",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" className={cn("font-sans")}>
-      <body
-        className={`${ibmplexSerif.variable} ${monoSans.variable}relative font-sans antialiased`}
-      >
+                                       children,
+                                   }: {
+    children: React.ReactNode;
+}) {
+    return (
+        <html lang="en" className={cn("font-sans")}>
+        <body
+            className={cn(
+                ibmplexSerif.variable,
+                monoSans.variable,
+                "relative font-sans antialiased"
+            )}
+        >
         {children}
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }
