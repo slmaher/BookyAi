@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Serif, Mona_Sans } from "next/font/google";
+
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +37,8 @@ export default function RootLayout({
                 "relative font-sans antialiased"
             )}
         >
+        <Navbar/>
+
         {children}
         </body>
         </html>
