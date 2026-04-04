@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Serif, Mona_Sans } from "next/font/google";
+import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 
 import Navbar from "@/components/Navbar";
 import "./globals.css";
@@ -37,9 +38,22 @@ export default function RootLayout({
                 "relative font-sans antialiased"
             )}
         >
-        <Navbar/>
+        <ClerkProvider>
+            <header className="flex justify-between items-center p-4 border-b">
+                <Navbar/>
+                <div className="flex gap-2">
+                    <Show when="signed-out">
+                        <SignInButton />
+                        <SignUpButton />
+                    </Show>
+                    <Show when="signed-in">
+                        <UserButton />
+                    </Show>
+                </div>
+            </header>
 
-        {children}
+            {children}
+        </ClerkProvider>
         </body>
         </html>
     );
