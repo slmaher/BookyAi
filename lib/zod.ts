@@ -19,13 +19,18 @@ const pdfFileSchema = z
   });
 
 const coverImageSchema = z
-  .custom<File | undefined>((value) => value === undefined || value instanceof File)
+  .custom<File | undefined>(
+    (value) => value === undefined || value instanceof File,
+  )
   .optional()
   .refine(
     (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-    "Cover image must be JPG, PNG, or WEBP"
+    "Cover image must be JPG, PNG, or WEBP",
   )
-  .refine((file) => !file || file.size <= MAX_IMAGE_SIZE, "Cover image must be 10MB or less");
+  .refine(
+    (file) => !file || file.size <= MAX_IMAGE_SIZE,
+    "Cover image must be 10MB or less",
+  );
 
 export const UploadSchema = z.object({
   pdfFile: pdfFileSchema,

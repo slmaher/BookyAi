@@ -17,18 +17,18 @@ const Form = FormProvider;
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   name: TName;
 };
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+  {} as FormFieldContextValue,
 );
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
   ...props
 }: ControllerProps<TFieldValues, TName>) => {
@@ -67,7 +67,7 @@ type FormItemContextValue = {
 };
 
 const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  {} as FormItemContextValue,
 );
 
 function FormItem({ className, ...props }: React.ComponentProps<"div">) {
@@ -95,13 +95,16 @@ function FormLabel({ className, ...props }: React.ComponentProps<"label">) {
 }
 
 function FormControl({ ...props }: React.ComponentProps<typeof Slot.Root>) {
-  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
+  const { error, formItemId, formDescriptionId, formMessageId } =
+    useFormField();
 
   return (
     <Slot.Root
       data-slot="form-control"
       id={formItemId}
-      aria-describedby={!error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`}
+      aria-describedby={
+        !error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`
+      }
       aria-invalid={!!error}
       {...props}
     />
