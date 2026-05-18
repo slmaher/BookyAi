@@ -62,7 +62,7 @@ const UploadForm = () => {
       pdfFile: undefined,
       coverImage: undefined,
       title: "",
-      author: "",
+      author: "",  n
       voice: DEFAULT_VOICE,
     },
   });
